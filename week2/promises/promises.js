@@ -26,13 +26,24 @@ var div = function (x, y) {
     return x / y;
 };
 var resAdd = calculate(10, 5, add);
-console.log(resAdd);
+// console.log(resAdd);
 var resSub = calculate(10, 5, sub);
-console.log(resSub);
+// console.log(resSub);
 var resMul = calculate(10, 5, mul);
 // console.log(resMul);
-var resDiv = calculate(10, 0, div);
-console.log(resDiv);
+var resDiv = calculate(10, 5, div);
+// console.log(resDiv);
 // d
 // jeg forsøgte at chaine....??
-calculate(10, 5, add).then(function (res) { return calculate(10, 5, sub); }).then(function (res) { return calculate(10, 5, mul); }).then(function (res) { return calculate(10, 5, div); });
+calculate(10, 5, add).then(function (res) {
+    console.log(res);
+    calculate(10, 5, sub).then(function (res) {
+        console.log(res);
+        calculate(10, 5, div).then(function (res) {
+            console.log(res);
+            calculate(10, 5, mul).then(function (res) {
+                console.log(res);
+            });
+        });
+    });
+});
