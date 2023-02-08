@@ -9,7 +9,7 @@ To see result of exercise 1, go through the following steps:
 - run `npm install`
 - run `npm run dev`
 
-I made a file alerter.ts and implemented a function that takes a HTMLDivElement as a parameter. It creates and input field and a button, which it then appends to the HTMLDivElement. This function is imported used in main.ts.
+I made a file src/alerter.ts and implemented a function that takes an HTMLDivElement as the argument. It creates and input field and a button, which it then appends to the HTMLDivElement. This function is imported and used in src/main.ts.
 
 # Exercise 2
 
@@ -18,4 +18,6 @@ To see result of exercise 2, go through the following steps:
 - clone project
 - run `cd week3/vanillats`
 - run `npm install`
-- run `ts-node-esm src/Player.ts`
+- run `ts-node-esm src/Person.ts`
+
+I made a file src/Person.ts with a class Person + an object of type Person verifying its methods..
