@@ -3,6 +3,8 @@ import { Navigator } from "node-navigator";
 import axios from "axios";
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const navigator = new Navigator();
+const dotenv = require("dotenv");
+dotenv.config();
 
 function getLocation() {
   try {
@@ -17,7 +19,9 @@ function getLocation() {
 }
 
 async function getWeather(coords: any) {
-  const apiKey = "1c8a45380c7f3a19af9ce55c317eb917";
+  const apiKey = process.env.WEATHER_API;
+  console.log(apiKey);
+
   try {
     const url =
       "http://api.openweathermap.org/data/2.5/weather?lat=" +
