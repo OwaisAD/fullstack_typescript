@@ -2,7 +2,7 @@
 
 ## Links
 [Course material](https://github.com/FullStackTypeScriptCourse/course_material)
-
+[Find exercises here](https://github.com/FullStackTypeScriptCourse/course_material/blob/main/README.md)
 
 # course material
 
