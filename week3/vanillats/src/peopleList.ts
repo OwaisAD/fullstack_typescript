@@ -2,7 +2,6 @@ import { Person } from "./Person";
 
 export function renderPeopleList(container: HTMLDivElement, peopleList: Array<Person>) {
   peopleList.forEach((person) => {
-    console.log("123123", person);
     const personbox = document.createElement("div");
 
     // person name
