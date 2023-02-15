@@ -1,6 +1,6 @@
 import data from "./data";
 
-class Person {
+export class Person {
   private name: string;
   private age: number;
   private occupation: string;
@@ -32,6 +32,14 @@ class Person {
   public getAge(): number {
     return this.age;
   }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  public getOccupation(): string {
+    return this.occupation;
+  }
 }
 
 const john = new Person("John Smith", 30, "software developer");
@@ -54,7 +62,7 @@ function populator(): Array<Person> {
   return mylist;
 }
 
-console.log(populator());
+// console.log(populator());
 
 export function toHTMLtable(personlist: Array<Person>): string {
   let table = `<table>

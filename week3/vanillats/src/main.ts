@@ -3,6 +3,8 @@ import typescriptLogo from "./typescript.svg";
 import { setupCounter } from "./counter";
 import { setupAlert } from "./alerter";
 import { setupTable } from "./Person";
+import { getPeople } from "./Person";
+import { renderPeopleList } from "./peopleList";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
@@ -19,6 +21,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <div class="alerter">
      </div>
      <div class="table"></div>
+     <div class="part3people"></div>
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
     </p>
@@ -30,3 +33,10 @@ setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
 setupAlert(document.querySelector<HTMLDivElement>(".alerter")!);
 
 setupTable(document.querySelector<HTMLDivElement>(".table")!);
+
+async function displayPeople() {
+  const people = await getPeople();
+  renderPeopleList(document.querySelector<HTMLDivElement>(".part3people")!, people);
+}
+
+displayPeople();
