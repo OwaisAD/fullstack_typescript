@@ -2,6 +2,7 @@ import "./style.css";
 import typescriptLogo from "./typescript.svg";
 import { setupCounter } from "./counter";
 import { setupAlert } from "./alerter";
+import { setupTable } from "./Person";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
@@ -17,6 +18,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     </div>
     <div class="alerter">
      </div>
+     <div class="table"></div>
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
     </p>
@@ -26,3 +28,5 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
 
 setupAlert(document.querySelector<HTMLDivElement>(".alerter")!);
+
+setupTable(document.querySelector<HTMLDivElement>(".table")!);
