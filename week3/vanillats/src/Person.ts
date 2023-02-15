@@ -1,3 +1,5 @@
+import data from "./data";
+
 class Person {
   private name: string;
   private age: number;
@@ -90,6 +92,23 @@ export function setupTable(container: HTMLDivElement) {
 
   container.innerHTML = table;
   container.appendChild(myButton);
+}
+
+export function getPeople(): Promise<Array<Person>> {
+  return new Promise((resolve, reject) => {
+    try {
+      let somedata = data;
+      let people: Array<Person> = [];
+      somedata.forEach((el) => {
+        const person = new Person(el.name, el.age, el.occupation);
+        person.setSalary(el.salary);
+        people.push(person);
+      });
+      resolve(people);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
 export {};
