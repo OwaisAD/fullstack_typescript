@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 type Person = {
+  id: number;
   name: string;
   age: number;
   occupation: string;
@@ -29,9 +30,28 @@ const People = () => {
     setPeople(newPeople);
   };
 
+  const sortByAgeAsc = () => {
+    if (!people.length) return;
+    const newPeople = [...people];
+    const sortedByAge = newPeople.sort((firstEl, secEl) => firstEl.age - secEl.age);
+    setPeople(newPeople);
+  };
+
+  const sortByAgeDesc = () => {
+    if (!people.length) return;
+    const newPeople = [...people];
+    const sortedByAge = newPeople.sort((firstEl, secEl) => secEl.age - firstEl.age);
+    setPeople(newPeople);
+  };
+
   const [newName, setNewName] = useState("");
   const [newAge, setNewAge] = useState("");
   const [newOccupation, setNewOccupation] = useState("");
+
+  const [updatedName, setUpdatedName] = useState("");
+  const [updatedAge, setUpdatedAge] = useState("");
+  const [updatedOccupation, setUpdatedOccupation] = useState("");
+  const [updatedId, setUpdatedId] = useState("");
 
   const handleAddNewPerson = async () => {
     if (!newName || !newAge || !newOccupation) {
@@ -48,6 +68,31 @@ const People = () => {
       setNewName("");
       setNewAge("");
       setNewOccupation("");
+    }
+  };
+
+  const handleUpdatePerson = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!updatedId || !updatedName || !updatedAge || !updatedOccupation) {
+      alert("Please fill out all fields to update a person");
+      return;
+    } else {
+      console.log("gucci");
+      console.log("updated id ", updatedId);
+      console.log("updated name ", updatedName);
+      console.log("updated age ", updatedAge);
+      console.log("updated occupation ", updatedOccupation);
+
+      const res = await axios.put(`http://localhost:3001/people/${updatedId}`, {
+        name: updatedName,
+        age: updatedAge,
+        occupation: updatedOccupation,
+      });
+      getData();
+      setUpdatedName("");
+      setUpdatedAge("");
+      setUpdatedOccupation("");
+      setUpdatedId("");
     }
   };
 
@@ -91,7 +136,38 @@ const People = () => {
         />
         <button onClick={handleAddNewPerson}>Add person</button> <br /> <br />
         <button onClick={removeLast}>Remove last person</button> <br /> <br />
-        <button>Sort by age</button>
+        <button onClick={sortByAgeAsc}>Sort by age asc</button>
+        <button onClick={sortByAgeDesc}>Sort by age desc</button>
+        <p>Update person</p>
+        <form onSubmit={(e) => handleUpdatePerson(e)}>
+          <select onChange={(e) => setUpdatedId(e.target.value)}>
+            <option value="" selected disabled>Select a value</option>
+            {people.map((person) => (
+              <option value={person.id}>
+                {person.name} (id: {person.id})
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            placeholder="name"
+            value={updatedName}
+            onChange={(e) => setUpdatedName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="age"
+            value={updatedAge}
+            onChange={(e) => setUpdatedAge(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="occupation"
+            value={updatedOccupation}
+            onChange={(e) => setUpdatedOccupation(e.target.value)}
+          />
+          <button type="submit">Update</button>
+        </form>
       </div>
     </div>
   );
