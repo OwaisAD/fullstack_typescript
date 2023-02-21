@@ -1,0 +1,7 @@
+{
+  "people": [
+    { "id": 1, "name": "Owais", "age": 24, "occupation": "SWE" },
+    { "id": 2, "name": "Elon", "age": 51, "occupation": "CEO Tesla" },
+    { "id": 3, "name": "Bill", "age": 60, "occupation": "Ex-CEO Microsoft" }
+  ]
+}
