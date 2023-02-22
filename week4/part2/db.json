@@ -1,7 +1,7 @@
 {
   "people": [
     {
-      "name": "Owais",
+      "name": "OwaisD",
       "age": "24",
       "occupation": "SWE",
       "id": 1
@@ -17,6 +17,12 @@
       "name": "Bill",
       "age": 60,
       "occupation": "Ex-CEO Microsoft"
+    },
+    {
+      "name": "J. Miller",
+      "age": "52",
+      "occupation": "Constructions",
+      "id": 4
     }
   ]
 }

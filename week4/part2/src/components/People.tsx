@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LoadPeople from "./LoadPeople";
 
 type Person = {
   id: number;
@@ -98,24 +99,12 @@ const People = () => {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          getData();
-          setDisplayPeople(!displayPeople);
-        }}
-      >
-        Load list of people
-      </button>
-
-      {displayPeople && people.length > 0 && (
-        <>
-          {people?.map((person: Person, index: number) => (
-            <p key={index}>
-              Name: {person.name}, age: {person.age}, occupation: {person.occupation}
-            </p>
-          ))}
-        </>
-      )}
+      <LoadPeople
+        displayPeople={displayPeople}
+        setDisplayPeople={setDisplayPeople}
+        getData={getData}
+        people={people}
+      />
 
       <div>
         <label htmlFor="name">name:</label>
@@ -141,7 +130,9 @@ const People = () => {
         <p>Update person</p>
         <form onSubmit={(e) => handleUpdatePerson(e)}>
           <select onChange={(e) => setUpdatedId(e.target.value)}>
-            <option value="" selected disabled>Select a value</option>
+            <option value="" selected disabled>
+              Select a value
+            </option>
             {people.map((person) => (
               <option value={person.id}>
                 {person.name} (id: {person.id})
