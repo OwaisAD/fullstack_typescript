@@ -51,12 +51,24 @@ const resolvers = {
       const petId = args.petId;
       const ownerId = args.ownerId;
       const owner = await Owner.findById(ownerId);
-      const pet = await Pet.findById(ownerId);
+      const pet = await Pet.findById(petId);
       if (!owner) throw new Error("Owner not found");
       if (!pet) throw new Error("Pet not found");
       owner.pets.push(petId);
       await owner.save();
-      return owner;
+      console.log(owner);
+      return owner.populate("pets");
+    },
+    removePetFromOwner: async (_parent: any, args: any, _context: any, _info: any) => {
+      const petId = args.petId;
+      const ownerId = args.ownerId;
+      const owner = await Owner.findById(ownerId);
+      const pet = await Pet.findById(petId);
+      if (!owner) throw new Error("Owner not found");
+      if (!pet) throw new Error("Pet not found");
+      owner.pets = owner.pets.filter((currPet) => currPet.toString() !== petId)
+      await owner.save();
+      return owner.populate("pets");
     },
   },
 };

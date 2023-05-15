@@ -26,6 +26,7 @@ const typeDefs = gql`
     createOwner(name: String): Owner
     deleteOwner(id: ID): String
     addPetToOwner(petId: ID, ownerId: ID): Owner
+    removePetFromOwner(petId: ID, ownerId: ID): Owner
   }
 `;
 
